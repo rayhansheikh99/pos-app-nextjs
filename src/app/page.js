@@ -46,7 +46,7 @@ export default async function Home() {
             <PiPlusCircle className="text-3xl text-[#7985CF]" />
           </div>
           {/* cart list */}
-          <CartList products={products} />
+          <CartList />
         </div>
         <div className='w-full h-full'>
           <div className="flex items-center gap-3 py-3 shadow-xl px-4 border">
