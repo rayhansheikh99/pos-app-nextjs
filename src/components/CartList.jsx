@@ -1,28 +1,18 @@
 // @ts-nocheck
 "use client";
-import { FaHandRock, FaPlusCircle } from "react-icons/fa";
+import { FaPlusCircle } from "react-icons/fa";
 import { FaMinusCircle } from "react-icons/fa";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { FaRegEdit } from "react-icons/fa";
-import { IoCloseCircleOutline } from "react-icons/io5";
-import { TbShoppingBagDiscount } from "react-icons/tb";
-import { GiPayMoney } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
-import { calculateSubtotal } from "@/utils/subTotal";
 import { decrementQty, incrementQty, removeFromCart } from "@/lib/slices/cartSlice";
-import { calculateTotalQuantity } from "@/utils/qtyTotal";
+import CartBottom from "./CartBottom";
+import CartTotal from "./CartTotal";
 
 const CartList = () => {
 
     const cartItems = useSelector((state) => state.cart.items);
-    const subtotal = parseFloat(calculateSubtotal(cartItems).toFixed(2));
-    const totalQuantity = calculateTotalQuantity(cartItems);
 
-    const tax = parseFloat(((10 / 100) * subtotal).toFixed(2))
-    const shipping = subtotal ? 5.50.toFixed(2) : 0
-    const discount = subtotal ? 10.00.toFixed(2) : 0
-    const total = ((subtotal + tax + parseFloat(shipping)) - parseFloat(discount)).toFixed(2)
-    
     const dispatch = useDispatch();
     function handleRemoveCartItem(cartId) {
         dispatch(removeFromCart(cartId));
@@ -30,7 +20,7 @@ const CartList = () => {
 
     return (
         <div>
-            <div className="overflow-x-auto mt-5">
+            {(cartItems && cartItems.length) > 0 ? <div className="overflow-x-auto mt-5">
                 <table className="w-full">
                     <tbody>
                         {
@@ -48,50 +38,12 @@ const CartList = () => {
                             })}
                     </tbody>
                 </table>
-            </div>
-            <div className="w-[350px] float-right mt-10">
-                <div className="flex items-center justify-between py-2 gap-1 border-t-2">
-                    <p className="text-slate-500 text-sm font-semibold">Sub Total</p>
-                    <p className="font-semibold">${subtotal}</p>
-                </div>
-                <div className="flex items-center justify-between py-2 gap-1 border-y">
-                    <p className="text-slate-500 text-sm font-semibold">TAX</p>
-                    <p className="font-semibold">${tax}</p>
-                </div>
-                <div className="flex items-center justify-between py-2 gap-1 border-t">
-                    <p className="text-slate-500 text-sm font-semibold">Shipping</p>
-                    <p className="font-semibold">${shipping}</p>
-                </div>
-                <div className="flex items-center justify-between py-2 gap-1 border-t">
-                    <p className="text-[#3674D9] text-sm font-semibold">Discount on Cart</p>
-                    <p className="font-semibold">${discount}</p>
-                </div>
-            </div>
-            <div className="flex justify-between items-center w-full bg-[#E7E9F6] px-4 rounded">
-                <p className="text-sm text-[#3674D9]">Products Count ({totalQuantity})</p>
-                <div className="flex items-center justify-between py-2 gap-1 border-y w-[350px]">
-                    <p className="text-[#3674D9] text-2xl font-semibold">Total</p>
-                    <p className="text-[#3674D9] text-2xl font-semibold">${total}</p>
-                </div>
-            </div>
-            <div className="flex justify-between items-center gap-3 mt-6">
-                <div className="flex items-center gap-2 bg-[#FADEDD] py-1.5 px-3 text-2xl font-medium rounded text-[#E55C57]">
-                    <IoCloseCircleOutline />
-                    <p>Cancel</p>
-                </div>
-                <div className="flex items-center gap-2 bg-[#E7E9F6] py-1.5 px-3 text-2xl font-medium rounded text-[#3674D9]">
-                    <FaHandRock />
-                    <p>Hold</p>
-                </div>
-                <div className="flex items-center gap-2 bg-[#E7E9F6] py-1.5 px-3 text-2xl font-medium rounded text-[#3674D9]">
-                    <TbShoppingBagDiscount />
-                    <p>Discount</p>
-                </div>
-                <div className="flex items-center gap-2 bg-[#E7E9F6] py-1.5 px-3 text-2xl font-medium rounded text-[#3674D9]">
-                    <GiPayMoney />
-                    <p>Pay Now</p>
-                </div>
-            </div>
+            </div> :
+                <div className="py-5">
+                    <p className="text-2xl text-slate-500 text-center font-semibold">No product in your cart</p>
+                </div>}
+            <CartTotal />
+            <CartBottom />
         </div>
     )
 }
