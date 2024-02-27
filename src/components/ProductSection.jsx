@@ -35,7 +35,7 @@ const ProductSection = ({ products }) => {
                 <div className="my-1">
                     {searchTxt && <p className="text-slate-500"><span className="text-lg font-semibold text-[#3674D9]">{`"${searchResult?.length}"`}</span> results found</p>}
                 </div>
-                <ProductList products={products} searchResult={searchResult} />
+                <ProductList products={products} searchResult={searchResult} searchTxt={searchTxt}/>
             </div>
         </div>
     )
