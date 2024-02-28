@@ -9,7 +9,7 @@ export default async function Home() {
     <main className="max-w-[1800px] mx-auto min-h-screen py-5 px-4">
       <div className='grid grid-cols-1 xl:grid-cols-2 gap-x-5'>
         {/* Cart List */}
-        <div className='w-full h-full'>
+        <div className='w-full h-full hidden lg:block'>
           <CartTop />
           <CartList />
         </div>

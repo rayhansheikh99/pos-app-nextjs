@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 //Create Initial State
 const initialState = {
@@ -26,6 +27,9 @@ const cartSlice = createSlice({
     removeFromCart: (state, action) => {
       const cartId = action.payload;
       state.items = state.items?.filter((item) => item.id !== cartId);
+      toast("Remove item from cart", {
+        type: 'error', autoClose: 1000,
+    })
     },
     incrementQty: (state, action) => {
       const cartId = action.payload;
@@ -33,6 +37,9 @@ const cartSlice = createSlice({
       if (cartItem) {
         cartItem.qty += 1;
       }
+      toast("Increasing cart items", {
+        type: 'success', autoClose: 1000,
+    })
     },
     decrementQty: (state, action) => {
       const cartId = action.payload;
@@ -43,6 +50,9 @@ const cartSlice = createSlice({
       if (cartItem && cartItem.qty > 1) {
         cartItem.qty -= 1;
       }
+      toast("Decreasing cart items", {
+        type: 'error', autoClose: 1000,
+    })
       
     },
   },

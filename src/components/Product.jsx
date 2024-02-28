@@ -5,6 +5,7 @@ import Image from "next/image";
 import React from "react";
 import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 export default function Product({ product }) {
 
@@ -17,10 +18,13 @@ export default function Product({ product }) {
     const dispatch = useDispatch();
     function handleAddToCart() {
         dispatch(addToCart(product));
+        toast("Added to Cart", {
+            type: 'success', autoClose: 1000,
+        })
     }
 
     return (
-        <div className={`rounded bg-white overflow-hidden ${borderClass} border shadow relative`}>
+        <div className={`rounded bg-white overflow-hidden ${borderClass} border shadow relative lg:cursor-pointer`}>
             <div className="relative">
                 <Image
                     onClick={handleAddToCart}

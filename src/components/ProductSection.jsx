@@ -7,12 +7,15 @@ import { useState } from "react";
 import { searchProducts } from "@/utils/search";
 import { MdShoppingCart } from "react-icons/md";
 import { useSelector } from "react-redux";
+import CartTop from "./CartTop";
+import CartList from "./CartList";
 
 const ProductSection = ({ products }) => {
 
     const cartItems = useSelector((state) => state.cart.items);
     const [searchResult, setSearchResult] = useState([])
     const [searchTxt, setSearchTxt] = useState(null)
+    const [open, setOpen] = useState(false)
 
     const search = (query) => {
         setSearchResult(searchProducts(query, setSearchTxt, products))
@@ -38,9 +41,13 @@ const ProductSection = ({ products }) => {
                 </div>
                 <ProductList products={products} searchResult={searchResult} searchTxt={searchTxt} />
             </div>
-            <div className="fixed bottom-10 right-10 w-20 h-20 flex justify-center items-center rounded-full z-[2] bg-[#3674D9]">
+            <div className={`w-full h-full lg:hidden absolute top-0 ${open ? "left-20" : "left-[100%]"} duration-500 z-50 bg-white`}>
+                <CartTop setOpen={setOpen} open={open}/>
+                <CartList />
+            </div>
+            <div onClick={() => setOpen(!open)} className="lg:hidden fixed bottom-5 right-5 w-16 h-16 flex justify-center items-center rounded-full z-[2] bg-[#3674D9]">
                 <button><MdShoppingCart className="text-4xl" /></button>
-                {cartItems.length > 0 && <div className="absolute -top-1 -left-1 w-8 h-8 flex justify-center items-center bg-black text-white rounded-full">
+                {cartItems.length > 0 && <div className="absolute -top-2 -left-1 w-8 h-8 flex justify-center items-center bg-black text-white rounded-full">
                     <p className="text-xs">{cartItems.length}</p>
                 </div>}
             </div>
