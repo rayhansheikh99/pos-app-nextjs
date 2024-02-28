@@ -17,20 +17,20 @@ const CartTotal = () => {
 
     return (
         <>
-            <div className="sm:w-[350px] w-[250px] float-right mt-10">
-                <div className="flex items-center justify-between py-2 gap-1 border-t-2">
+            <div className="sm:w-[350px] w-[250px] float-right lg:mt-10">
+                <div className="flex items-center justify-between py-1 lg:py-2 gap-1 border-t-2">
                     <p className="text-slate-500 text-sm font-semibold">Sub Total</p>
                     <p className="font-semibold">${subtotal}</p>
                 </div>
-                <div className="flex items-center justify-between py-2 gap-1 border-y">
+                <div className="flex items-center justify-between py-1 lg:py-2 gap-1 border-y">
                     <p className="text-slate-500 text-sm font-semibold">TAX</p>
                     <p className="font-semibold">${tax}</p>
                 </div>
-                <div className="flex items-center justify-between py-2 gap-1 border-t">
+                <div className="flex items-center justify-between py-1 lg:py-2 gap-1 border-t">
                     <p className="text-slate-500 text-sm font-semibold">Shipping</p>
                     <p className="font-semibold">${shipping}</p>
                 </div>
-                <div className="flex items-center justify-between py-2 gap-1 border-t">
+                <div className="flex items-center justify-between py-1 lg:py-2 gap-1 border-t">
                     <p className="text-[#3674D9] text-sm font-semibold">Discount on Cart</p>
                     <p className="font-semibold">${discount}</p>
                 </div>

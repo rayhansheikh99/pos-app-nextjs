@@ -11,9 +11,9 @@ const CartTop = ({ setOpen, open }) => {
     return (
         <>
             <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-2">
-                <div className="flex justify-between items-center">
-                    <button className="w-max"><HiMiniBars3 className="text-3xl lg:ml-4" /></button>
-                    <button onClick={() => setOpen(!open)} className="w-max"><IoCloseCircleOutline className="text-3xl lg:hidden" /></button>
+                <div className="flex justify-end items-center">
+                    <button className="w-max hidden lg:block"><HiMiniBars3 className="text-3xl lg:ml-4" /></button>
+                    <button onClick={() => setOpen(!open)} className="w-max lg:hidden"><IoCloseCircleOutline className="text-3xl" /></button>
                 </div>
                 <div className="flex justify-between items-center gap-x-1 lg:gap-x-2 w-full">
                     <button className="bg-[#E7E9F6] text-[#7985CF] flex text-[10px] lg:text-base items-center justify-center gap-1 lg:gap-3 px-0.5 lg:px-2.5 py-2 w-full rounded">
